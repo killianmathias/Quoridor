@@ -1,17 +1,17 @@
 #pragma once
 class Position{
   private:
-    double x;
-    double y;
+    float x;
+    float y;
 
   public:
-    Position(double x, double y) : x(x), y(y) {}
+    Position(float x, float y) : x(x), y(y) {}
     Position(): x(0),y(0){}
 
-    double getX() {
+    float getX() const{
       return x;
     }
-    double getY() {
+    float getY() const{
       return y;
     }
     void setX(double newX) {
@@ -19,6 +19,15 @@ class Position{
     }
     void setY(double newY) {
       y = newY;
+    }
+    bool operator<(const Position& p) const {
+        if (x < p.x) {
+            return true;
+        }
+        if (x == p.x && y < p.y) {
+            return true;
+        }
+        return false;
     }
 
 };

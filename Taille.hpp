@@ -2,17 +2,17 @@
 #define POSITION_HPP
 class Taille{
   private:
-    double width;
-    double height;
+    float width;
+    float height;
 
   public:
-    Taille(int h, int w) : height(h), width(w) {}
+    Taille(float h, float w) : height(h), width(w) {}
     Taille(): height(0),width(0){}
 
-    double getWidth() const {
+    float getWidth() const {
       return width;
     }
-    double getHeight() const {
+    float getHeight() const {
       return height;
     }
 

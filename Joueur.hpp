@@ -7,11 +7,12 @@ private:
     Position position;
     Taille taille;
     int nbMurs;
+    int id;
     static const int TAILLE_CASE = 75;
     static const float ESPACE;
 
 public:
-    Joueur(int x, int y) : position(x, y), taille(TAILLE_CASE, TAILLE_CASE),nbMurs(10) {}
+    Joueur(double x, double y,int id) : position(x, y), taille(TAILLE_CASE, TAILLE_CASE),nbMurs(10),id(id) {}
 
     void retirerMurs(){
         if (nbMurs>0){
@@ -27,17 +28,30 @@ public:
     int getNbMurs(){
         return nbMurs;
     }
+    int getId(){
+        return id;
+    }
+    void setPosition(Position pos){
+        position = pos;
+    }
     void Droite(){
         position.setX(position.getX()+(ESPACE+TAILLE_CASE));
     }
     void Gauche(){
         position.setX(position.getX()-(ESPACE+TAILLE_CASE));
     }
-    void Haut(){
+    void Bas(){
         position.setY(position.getY()+(ESPACE+TAILLE_CASE));
     }
-    void Bas(){
+    void Haut(){
         position.setY(position.getY()-(ESPACE+TAILLE_CASE));
+    }
+    sf::String strNbMurs(){
+        if (nbMurs==10){
+            return "Nombre de murs restants : " + std::to_string(nbMurs);
+        }else{
+            return "Nombre de murs restants : " + std::to_string(nbMurs)+"";
+        }
     }
 };
 const float Joueur::ESPACE = 12.5;

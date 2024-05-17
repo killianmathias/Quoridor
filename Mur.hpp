@@ -10,9 +10,9 @@ private:
     int angle;
 
 public:
-    Mur(double x, double y, int h, int w, int a) : position(x, y), taille(h, w), angle(a) {}
+    Mur(float x, float y, float h, float w, int a) : position(x, y), taille(h, w), angle(a) {}
     Mur() : position(),taille(),angle(0){}
-    Mur(double x, double y, int a) : position(x,y),taille(0,0),angle(a){}
+    Mur(float x, float y, int a) : position(x,y),taille(0,0),angle(a){}
     Taille getTaille(){
         return taille;
     }
@@ -21,5 +21,8 @@ public:
     }
     void setTaille(Taille newTaille){
         taille = newTaille;
+    }
+    void setPosition(Position newPos){
+        position = newPos;
     }
 };
