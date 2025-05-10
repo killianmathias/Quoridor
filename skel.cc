@@ -546,8 +546,7 @@ int main() {
               affichageMur = true;
               
             }
-          }
-          else{
+          }else{
             if (mouseX>=joueur2.getPosition().getX() && mouseX<=joueur2.getPosition().getX()+TAILLE_CASE && mouseY>=joueur2.getPosition().getY()&& mouseY<=joueur2.getPosition().getY()+TAILLE_CASE){
               affichageMur =false;
               seDeplace= true;
@@ -559,13 +558,49 @@ int main() {
           if (seDeplace){
             if (tourJoueur1){
               if (EstLibreEnHaut(joueur1,murs,TAILLE_CASE)&& JoueurEnHaut(joueur1,joueur2,TAILLE_CASE)&& !EstLibreEnHaut(joueur2,murs,TAILLE_CASE)){
-                if (mouseX >= joueur1.getPosition().getX()+TAILLE_CASE+ESPACE && mouseX <= joueur1.getPosition().getX()+TAILLE_CASE*2+ESPACE && mouseY >= joueur2.getPosition().getY()&&mouseY <= joueur2.getPosition().getY()+(TAILLE_CASE)){
+                if (mouseX >= joueur1.getPosition().getX()+TAILLE_CASE+ESPACE && mouseX <= joueur1.getPosition().getX()+TAILLE_CASE*2+ESPACE && mouseY >= joueur2.getPosition().getY()&&mouseY <= joueur2.getPosition().getY()+(TAILLE_CASE)&& EstLibreADroite(joueur2,murs,TAILLE_CASE)){
                   joueur1.Droite();
                   joueur1.Haut();
                   tourJoueur1=false;
                   seDeplace=false;
-                }else if (mouseX >= joueur1.getPosition().getX()-(TAILLE_CASE+ESPACE) && mouseX <= joueur1.getPosition().getX()-ESPACE && mouseY >= joueur2.getPosition().getY()&&mouseY <= joueur2.getPosition().getY()+(TAILLE_CASE)){
+                }else if (mouseX >= joueur1.getPosition().getX()-(TAILLE_CASE+ESPACE) && mouseX <= joueur1.getPosition().getX()-ESPACE && mouseY >= joueur2.getPosition().getY()&&mouseY <= joueur2.getPosition().getY()+(TAILLE_CASE)&& EstLibreAGauche(joueur2,murs,TAILLE_CASE)){
                   joueur1.Gauche();
+                  joueur1.Haut();
+                  tourJoueur1=false;
+                  seDeplace=false;
+                }
+              }else if (EstLibreEnBas(joueur1,murs,TAILLE_CASE)&& JoueurEnBas(joueur1,joueur2,TAILLE_CASE)&& !EstLibreEnBas(joueur2,murs,TAILLE_CASE)){
+                if (mouseX >= joueur1.getPosition().getX()+TAILLE_CASE+ESPACE && mouseX <= joueur1.getPosition().getX()+TAILLE_CASE*2+ESPACE && mouseY >= joueur2.getPosition().getY()&&mouseY <= joueur2.getPosition().getY()+(TAILLE_CASE)&& EstLibreADroite(joueur2,murs,TAILLE_CASE)){
+                  joueur1.Droite();
+                  joueur1.Bas();
+                  tourJoueur1=false;
+                  seDeplace=false;
+                }else if (mouseX >= joueur1.getPosition().getX()-(TAILLE_CASE+ESPACE) && mouseX <= joueur1.getPosition().getX()-ESPACE && mouseY >= joueur2.getPosition().getY()&&mouseY <= joueur2.getPosition().getY()+(TAILLE_CASE)&& EstLibreAGauche(joueur2,murs,TAILLE_CASE)){
+                  joueur1.Gauche();
+                  joueur1.Bas();
+                  tourJoueur1=false;
+                  seDeplace=false;
+                }
+              }else if (EstLibreAGauche(joueur1,murs,TAILLE_CASE)&& JoueurAGauche(joueur1,joueur2,TAILLE_CASE)&& !EstLibreAGauche(joueur2,murs,TAILLE_CASE)){
+                if (mouseX >= joueur2.getPosition().getX() && mouseX <= joueur2.getPosition().getX()+TAILLE_CASE && mouseY >= joueur1.getPosition().getY()+TAILLE_CASE+ESPACE && mouseY <= joueur1.getPosition().getY()+(TAILLE_CASE)*2+ESPACE&& EstLibreEnBas(joueur2,murs,TAILLE_CASE)){
+                  joueur1.Gauche();
+                  joueur1.Bas();
+                  tourJoueur1=false;
+                  seDeplace=false;
+                }else if (mouseX >= joueur2.getPosition().getX() && mouseX <= joueur2.getPosition().getX()+TAILLE_CASE && mouseY >= joueur1.getPosition().getY()-(TAILLE_CASE+ESPACE) && mouseY <= joueur1.getPosition().getY()-ESPACE && EstLibreEnHaut(joueur2,murs,TAILLE_CASE)){
+                  joueur1.Gauche();
+                  joueur1.Haut();
+                  tourJoueur1=false;
+                  seDeplace=false;
+                }
+              }else if (EstLibreADroite(joueur1,murs,TAILLE_CASE)&& JoueurADroite(joueur1,joueur2,TAILLE_CASE)&& !EstLibreADroite(joueur2,murs,TAILLE_CASE)){
+                if (mouseX >= joueur2.getPosition().getX() && mouseX <= joueur2.getPosition().getX()+TAILLE_CASE && mouseY >= joueur1.getPosition().getY()+TAILLE_CASE+ESPACE && mouseY <= joueur1.getPosition().getY()+(TAILLE_CASE)*2+ESPACE && EstLibreEnBas(joueur2,murs,TAILLE_CASE)){
+                  joueur1.Droite();
+                  joueur1.Bas();
+                  tourJoueur1=false;
+                  seDeplace=false;
+                }else if (mouseX >= joueur2.getPosition().getX() && mouseX <= joueur2.getPosition().getX()+TAILLE_CASE && mouseY >= joueur1.getPosition().getY()-(TAILLE_CASE+ESPACE) && mouseY <= joueur1.getPosition().getY()-ESPACE && EstLibreEnHaut(joueur2,murs,TAILLE_CASE)){
+                  joueur1.Droite();
                   joueur1.Haut();
                   tourJoueur1=false;
                   seDeplace=false;
@@ -579,12 +614,11 @@ int main() {
                       tourJoueur1=false;
                       seDeplace=false;
                     }
-
                   }else{
                     if (mouseX>=joueur1.getPosition().getX()+(TAILLE_CASE+ESPACE) && mouseX<=joueur1.getPosition().getX()+TAILLE_CASE+(TAILLE_CASE+ESPACE) && mouseY>=joueur1.getPosition().getY()&& mouseY<=joueur1.getPosition().getY()+TAILLE_CASE){
-                    joueur1.Droite();
-                    tourJoueur1=false;
-                    seDeplace=false;
+                      joueur1.Droite();
+                      tourJoueur1=false;
+                      seDeplace=false;
                     }
                   }
                 }
@@ -638,7 +672,55 @@ int main() {
                 }
               }
             }else{
-              if (!(EstLibreEnBas(joueur2,murs,TAILLE_CASE) && JoueurEnBas(joueur2,joueur1,TAILLE_CASE)&& !EstLibreEnBas(joueur1,murs,TAILLE_CASE))){
+              if (EstLibreEnBas(joueur2,murs,TAILLE_CASE)&& JoueurEnBas(joueur2,joueur1,TAILLE_CASE)&& !EstLibreEnBas(joueur1,murs,TAILLE_CASE)){
+                if (mouseX >= joueur2.getPosition().getX()+TAILLE_CASE+ESPACE && mouseX <= joueur2.getPosition().getX()+TAILLE_CASE*2+ESPACE && mouseY >= joueur1.getPosition().getY()&&mouseY <= joueur1.getPosition().getY()+(TAILLE_CASE)&& EstLibreADroite(joueur1,murs,TAILLE_CASE)){
+                  joueur2.Droite();
+                  joueur2.Bas();
+                  tourJoueur1=true;
+                  seDeplace=false;
+                }else if (mouseX >= joueur2.getPosition().getX()-(TAILLE_CASE+ESPACE) && mouseX <= joueur2.getPosition().getX()-ESPACE && mouseY >= joueur1.getPosition().getY()&&mouseY <= joueur1.getPosition().getY()+(TAILLE_CASE)&& EstLibreAGauche(joueur1,murs,TAILLE_CASE)){
+                  joueur2.Gauche();
+                  joueur2.Bas();
+                  tourJoueur1=true;
+                  seDeplace=false;
+                }
+              }else if (EstLibreEnHaut(joueur2,murs,TAILLE_CASE)&& JoueurEnHaut(joueur2,joueur1,TAILLE_CASE)&& !EstLibreEnHaut(joueur1,murs,TAILLE_CASE)){
+                if (mouseX >= joueur2.getPosition().getX()+TAILLE_CASE+ESPACE && mouseX <= joueur2.getPosition().getX()+TAILLE_CASE*2+ESPACE && mouseY >= joueur1.getPosition().getY()&&mouseY <= joueur1.getPosition().getY()+(TAILLE_CASE)&& EstLibreADroite(joueur1,murs,TAILLE_CASE)){
+                  joueur2.Droite();
+                  joueur2.Haut();
+                  tourJoueur1=true;
+                  seDeplace=false;
+                }else if (mouseX >= joueur2.getPosition().getX()-(TAILLE_CASE+ESPACE) && mouseX <= joueur2.getPosition().getX()-ESPACE && mouseY >= joueur1.getPosition().getY()&&mouseY <= joueur1.getPosition().getY()+(TAILLE_CASE)&& EstLibreAGauche(joueur1,murs,TAILLE_CASE)){
+                  joueur2.Gauche();
+                  joueur2.Haut();
+                  tourJoueur1=true;
+                  seDeplace=false;
+                }
+              } else if (EstLibreAGauche(joueur2,murs,TAILLE_CASE)&& JoueurAGauche(joueur2,joueur1,TAILLE_CASE)&& !EstLibreAGauche(joueur1,murs,TAILLE_CASE)){
+                if (mouseX >= joueur1.getPosition().getX() && mouseX <= joueur1.getPosition().getX()+TAILLE_CASE && mouseY >= joueur2.getPosition().getY()+TAILLE_CASE+ESPACE && mouseY <= joueur2.getPosition().getY()+(TAILLE_CASE)*2+ESPACE&& EstLibreEnBas(joueur1,murs,TAILLE_CASE)){
+                  joueur2.Gauche();
+                  joueur2.Bas();
+                  tourJoueur1=true;
+                  seDeplace=false;
+                }else if (mouseX >= joueur1.getPosition().getX() && mouseX <= joueur1.getPosition().getX()+TAILLE_CASE && mouseY >= joueur2.getPosition().getY()-(TAILLE_CASE+ESPACE) && mouseY <= joueur2.getPosition().getY()-ESPACE&& EstLibreEnHaut(joueur1,murs,TAILLE_CASE)){
+                  joueur2.Gauche();
+                  joueur2.Haut();
+                  tourJoueur1=true;
+                  seDeplace=false;
+                }
+              }else if (EstLibreADroite(joueur2,murs,TAILLE_CASE)&& JoueurADroite(joueur2,joueur1,TAILLE_CASE)&& !EstLibreADroite(joueur1,murs,TAILLE_CASE)){
+                if (mouseX >= joueur1.getPosition().getX() && mouseX <= joueur1.getPosition().getX()+TAILLE_CASE && mouseY >= joueur2.getPosition().getY()+TAILLE_CASE+ESPACE && mouseY <= joueur2.getPosition().getY()+(TAILLE_CASE)*2+ESPACE && EstLibreEnBas(joueur1,murs,TAILLE_CASE)){
+                  joueur2.Droite();
+                  joueur2.Bas();
+                  tourJoueur1=true;
+                  seDeplace=false;
+                }else if (mouseX >= joueur1.getPosition().getX() && mouseX <= joueur1.getPosition().getX()+TAILLE_CASE && mouseY >= joueur2.getPosition().getY()-(TAILLE_CASE+ESPACE) && mouseY <= joueur2.getPosition().getY()-ESPACE&& EstLibreEnHaut(joueur1,murs,TAILLE_CASE)){
+                  joueur2.Droite();
+                  joueur2.Haut();
+                  tourJoueur1=true;
+                  seDeplace=false;
+                }
+              }else{
                 if(EstLibreADroite(joueur2,murs,TAILLE_CASE)){
                   if (JoueurADroite(joueur2,joueur1,TAILLE_CASE)){
                     if (mouseX>=joueur2.getPosition().getX()+(TAILLE_CASE+ESPACE)*2 && mouseX<=joueur2.getPosition().getX()+TAILLE_CASE+(TAILLE_CASE+ESPACE)*2 && mouseY>=joueur2.getPosition().getY()&& mouseY<=joueur2.getPosition().getY()+TAILLE_CASE){
@@ -647,12 +729,11 @@ int main() {
                       tourJoueur1=true;
                       seDeplace=false;
                     }
-
                   }else{
                     if (mouseX>=joueur2.getPosition().getX()+(TAILLE_CASE+ESPACE) && mouseX<=joueur2.getPosition().getX()+TAILLE_CASE+(TAILLE_CASE+ESPACE) && mouseY>=joueur2.getPosition().getY()&& mouseY<=joueur2.getPosition().getY()+TAILLE_CASE){
-                    joueur2.Droite();
-                    tourJoueur1=true;
-                    seDeplace=false;
+                      joueur2.Droite();
+                      tourJoueur1=true;
+                      seDeplace=false;
                     }
                   }
                 }
@@ -704,19 +785,6 @@ int main() {
                       }
                     }
                 }
-              }else{
-                if (mouseX >= joueur2.getPosition().getX()+TAILLE_CASE+ESPACE && mouseX <= joueur2.getPosition().getX()+TAILLE_CASE*2+ESPACE && mouseY >= joueur1.getPosition().getY()&&mouseY <= joueur1.getPosition().getY()+(TAILLE_CASE)){
-                  joueur2.Droite();
-                  joueur2.Bas();
-                  tourJoueur1=true;
-                  seDeplace=false;
-                }
-                if (mouseX >= joueur2.getPosition().getX()-(TAILLE_CASE+ESPACE) && mouseX <= joueur2.getPosition().getX()-ESPACE && mouseY >= joueur1.getPosition().getY()&&mouseY <= joueur1.getPosition().getY()+(TAILLE_CASE)){
-                  joueur2.Gauche();
-                  joueur2.Bas();
-                  tourJoueur1=true;
-                  seDeplace=false;
-                }
               }
             }
           }else{
@@ -743,7 +811,7 @@ int main() {
                 }
               }
             }
-  }
+          }
         }else {
           if (button.isMouseOver(window)) {
               button.handleMouseClick(enJeu);
@@ -774,11 +842,41 @@ sf::RectangleShape entiteB(sf::Vector2f(TAILLE_CASE, TAILLE_CASE));
 if (seDeplace){
   if (tourJoueur1){
     if (EstLibreEnHaut(joueur1,murs,TAILLE_CASE)&& JoueurEnHaut(joueur1,joueur2,TAILLE_CASE)&& !EstLibreEnHaut(joueur2,murs,TAILLE_CASE)){
-      entiteD.setPosition(joueur1.getPosition().getX()+TAILLE_CASE+ESPACE, joueur1.getPosition().getY()-(TAILLE_CASE+ESPACE));
-      entiteD.setTexture(&caseDispo);
-      entiteG.setPosition(joueur1.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur1.getPosition().getY()-(TAILLE_CASE+ESPACE));
-      entiteG.setTexture(&caseDispo);
-
+      if (EstLibreADroite(joueur2,murs,TAILLE_CASE)){
+        entiteD.setPosition(joueur1.getPosition().getX()+TAILLE_CASE+ESPACE, joueur1.getPosition().getY()-(TAILLE_CASE+ESPACE));
+        entiteD.setTexture(&caseDispo);
+      }
+      if (EstLibreAGauche(joueur2,murs,TAILLE_CASE)){
+        entiteG.setPosition(joueur1.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur1.getPosition().getY()-(TAILLE_CASE+ESPACE));
+        entiteG.setTexture(&caseDispo);
+      }
+    }else if (EstLibreEnBas(joueur1,murs,TAILLE_CASE)&& JoueurEnBas(joueur1,joueur2,TAILLE_CASE)&& !EstLibreEnBas(joueur2,murs,TAILLE_CASE)){
+      if (EstLibreADroite(joueur2,murs,TAILLE_CASE)){
+        entiteD.setPosition(joueur1.getPosition().getX()+TAILLE_CASE+ESPACE, joueur1.getPosition().getY()+(TAILLE_CASE+ESPACE));
+        entiteD.setTexture(&caseDispo);
+      }
+      if (EstLibreAGauche(joueur2,murs,TAILLE_CASE)){
+        entiteG.setPosition(joueur1.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur1.getPosition().getY()+(TAILLE_CASE+ESPACE));
+        entiteG.setTexture(&caseDispo);
+      }
+    }else if (EstLibreAGauche(joueur1,murs,TAILLE_CASE)&& JoueurAGauche(joueur1,joueur2,TAILLE_CASE)&& !EstLibreAGauche(joueur2,murs,TAILLE_CASE)){
+      if (EstLibreEnBas(joueur2,murs,TAILLE_CASE)){
+        entiteH.setPosition(joueur1.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur1.getPosition().getY()+(TAILLE_CASE+ESPACE));
+        entiteH.setTexture(&caseDispo);
+      }
+      if (EstLibreEnHaut(joueur2,murs,TAILLE_CASE)){
+        entiteB.setPosition(joueur1.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur1.getPosition().getY()-(TAILLE_CASE+ESPACE));
+        entiteB.setTexture(&caseDispo);
+      }
+    }else if (EstLibreADroite(joueur1,murs,TAILLE_CASE)&& JoueurADroite(joueur1,joueur2,TAILLE_CASE)&& !EstLibreADroite(joueur2,murs,TAILLE_CASE)){
+      if (EstLibreEnBas(joueur2,murs,TAILLE_CASE)){
+        entiteH.setPosition(joueur1.getPosition().getX()+(TAILLE_CASE+ESPACE), joueur1.getPosition().getY()+(TAILLE_CASE+ESPACE));
+        entiteH.setTexture(&caseDispo);
+      }
+      if (EstLibreEnHaut(joueur2,murs,TAILLE_CASE)){
+        entiteB.setPosition(joueur1.getPosition().getX()+(TAILLE_CASE+ESPACE), joueur1.getPosition().getY()-(TAILLE_CASE+ESPACE));
+        entiteB.setTexture(&caseDispo);
+      }
     }else{
       if (EstLibreADroite(joueur1,murs,TAILLE_CASE)){
         if (JoueurADroite(joueur1,joueur2,TAILLE_CASE)){
@@ -800,6 +898,7 @@ if (seDeplace){
       }
       if (EstLibreEnHaut(joueur1,murs,TAILLE_CASE)){
         if (JoueurEnHaut(joueur1,joueur2,TAILLE_CASE)){  
+          entiteH.setPosition(joueur1.getPosition().getX(), joueur1.getPosition().getY()-(TAILLE_CASE+ESPACE)*2);
         }else{
           entiteH.setPosition(joueur1.getPosition().getX(), joueur1.getPosition().getY()-TAILLE_CASE-ESPACE);
         }
@@ -819,11 +918,42 @@ if (seDeplace){
     }
     }else{
       if (EstLibreEnBas(joueur2,murs,TAILLE_CASE)&& JoueurEnBas(joueur2,joueur1,TAILLE_CASE)&& !EstLibreEnBas(joueur1,murs,TAILLE_CASE)){
-            entiteD.setPosition(joueur2.getPosition().getX()+(TAILLE_CASE+ESPACE), joueur2.getPosition().getY()+(TAILLE_CASE+ESPACE));
-            entiteG.setPosition(joueur2.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur2.getPosition().getY()+(TAILLE_CASE+ESPACE));
-            entiteD.setTexture(&caseDispo);
-            entiteG.setTexture(&caseDispo);
-      }else{
+        if (EstLibreADroite(joueur1,murs,TAILLE_CASE)){
+          entiteD.setPosition(joueur2.getPosition().getX()+TAILLE_CASE+ESPACE, joueur2.getPosition().getY()+(TAILLE_CASE+ESPACE));
+          entiteD.setTexture(&caseDispo);
+        }
+        if (EstLibreAGauche(joueur1,murs,TAILLE_CASE)){
+          entiteG.setPosition(joueur2.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur2.getPosition().getY()+(TAILLE_CASE+ESPACE));
+          entiteG.setTexture(&caseDispo);
+        }
+    }else if (EstLibreEnHaut(joueur2,murs,TAILLE_CASE)&& JoueurEnHaut(joueur2,joueur1,TAILLE_CASE)&& !EstLibreEnHaut(joueur1,murs,TAILLE_CASE)){
+      if (EstLibreADroite(joueur1,murs,TAILLE_CASE)){
+        entiteD.setPosition(joueur2.getPosition().getX()+TAILLE_CASE+ESPACE, joueur2.getPosition().getY()-(TAILLE_CASE+ESPACE));
+        entiteD.setTexture(&caseDispo);
+      }
+      if (EstLibreAGauche(joueur1,murs,TAILLE_CASE)){
+        entiteG.setPosition(joueur2.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur2.getPosition().getY()-(TAILLE_CASE+ESPACE));
+        entiteG.setTexture(&caseDispo);
+      }
+    } else if (EstLibreAGauche(joueur2,murs,TAILLE_CASE)&& JoueurAGauche(joueur2,joueur1,TAILLE_CASE)&& !EstLibreAGauche(joueur1,murs,TAILLE_CASE)){
+      if (EstLibreEnBas(joueur1,murs,TAILLE_CASE)){
+        entiteH.setPosition(joueur2.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur2.getPosition().getY()+(TAILLE_CASE+ESPACE));
+        entiteH.setTexture(&caseDispo);
+      }
+      if (EstLibreEnHaut(joueur1,murs,TAILLE_CASE)){
+        entiteB.setPosition(joueur2.getPosition().getX()-(TAILLE_CASE+ESPACE), joueur2.getPosition().getY()-(TAILLE_CASE+ESPACE));
+        entiteB.setTexture(&caseDispo);
+      }
+    }else if (EstLibreADroite(joueur2,murs,TAILLE_CASE) && JoueurADroite(joueur2,joueur1,TAILLE_CASE)&& !EstLibreADroite(joueur1,murs,TAILLE_CASE)){
+      if (EstLibreEnBas(joueur1,murs,TAILLE_CASE)){
+        entiteH.setPosition(joueur2.getPosition().getX()+(TAILLE_CASE+ESPACE), joueur2.getPosition().getY()+(TAILLE_CASE+ESPACE));
+        entiteH.setTexture(&caseDispo);
+      }
+      if (EstLibreEnHaut(joueur1,murs,TAILLE_CASE)){
+        entiteB.setPosition(joueur2.getPosition().getX()+(TAILLE_CASE+ESPACE), joueur2.getPosition().getY()-(TAILLE_CASE+ESPACE));
+        entiteB.setTexture(&caseDispo);
+      }
+    }else{
         if (EstLibreADroite(joueur2,murs,TAILLE_CASE)){
           if (JoueurADroite(joueur2,joueur1,TAILLE_CASE)){
             entiteD.setPosition(joueur2.getPosition().getX() + (joueur2.getTaille().getWidth()+ESPACE)*2, joueur2.getPosition().getY());
