@@ -1,0 +1,10 @@
+{
+  "en": {
+    "title": "Quoridor",
+    "description": "This project implements the Quoridor game in C++."
+  },
+  "fr": {
+    "title": "Quoridor",
+    "description": "Ce projet implémente le jeu du Quoridor en C++."
+  }
+}
