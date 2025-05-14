@@ -1,0 +1,3 @@
+This project took place as part of the first year of my training in the Cursus Master en Ingénierie. The goal of this course was to analyze and develop a given game based on the programming language we chose.
+We chose C++ as our language, and the assigned game was Quoridor, a board game. The objective of this game is to move your piece to the opposite side of the board from its starting position. To do this, you can either move one square forward or place a wall two squares wide on each turn.
+If you would like to test our implementation, simply enter the following command in the terminal: ./skel, and the game should start.
