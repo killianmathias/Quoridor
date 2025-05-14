@@ -1,0 +1,3 @@
+Ce projet s'est déroulé dans le cadre de la première année de ma formation, le Cursus Master en Ingéniérie. Le but de l'unité d'enseignement était de d'analyser et de développer un jeu imposé en fonction du langage que l'on avait choisit.
+Notre choix s'était porté sur le C++ et le jeu imposé était le Quoridor, un jeu de société. Le but de se jeu est de déplacer son pion sur le bord opposé à celui de départ. Pour cela nous pouvons décider d'avancer de 1 case ou de placer un mur de 2 cases de largeur à chaque tour.
+Si vous souhaitez tester notre implémentation, saisissez dans le termimal : ./skel et le jeu devrait se lancer.
